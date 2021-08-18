@@ -1,0 +1,4 @@
+CREATE USER admin WITH PASSWORD 'admin';
+
+CREATE DATABASE djangodb;
+GRANT ALL PRIVILIGES ON DATABASE djangodb TO admin;
