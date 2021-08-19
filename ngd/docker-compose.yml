@@ -11,7 +11,7 @@ services:
     volumes:
       - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - 5432:5432
+      - "5432:5432"
 
   web:
     build:
@@ -22,4 +22,17 @@ services:
     depends_on:
       - postgresdb
     ports:
-      - 8000:8000
+      - "8000:8000"
+
+  nginx:
+    build:
+      context: ./docker/nginx/
+      dockerfile: Dockerfile
+    depends_on:
+      - web
+      - postgresdb
+    ports:
+      - "80:80"
+    volumes:
+      - ./static/:/static
+
